@@ -1,0 +1,163 @@
+{
+  "source": "Current fictional/local database; not real-world impact evidence",
+  "records": [
+    {
+      "method": "genetic",
+      "seed": 0,
+      "fitness": 0.81452,
+      "coverage": 0.875,
+      "unfilled": 1,
+      "imbalance": 0.15823736126465204,
+      "violations": 0,
+      "runtime_ms": 2199.82
+    },
+    {
+      "method": "greedy",
+      "seed": 0,
+      "fitness": 0.79023,
+      "coverage": 0.875,
+      "unfilled": 1,
+      "imbalance": 0.2072890493972125,
+      "violations": 0,
+      "runtime_ms": 0.64
+    },
+    {
+      "method": "random",
+      "seed": 0,
+      "fitness": 0.67539,
+      "coverage": 0.625,
+      "unfilled": 1,
+      "imbalance": 0.15,
+      "violations": 0,
+      "runtime_ms": 0.29
+    },
+    {
+      "method": "genetic",
+      "seed": 1,
+      "fitness": 0.80839,
+      "coverage": 0.875,
+      "unfilled": 1,
+      "imbalance": 0.14803399102908765,
+      "violations": 0,
+      "runtime_ms": 2977.9
+    },
+    {
+      "method": "greedy",
+      "seed": 1,
+      "fitness": 0.79023,
+      "coverage": 0.875,
+      "unfilled": 1,
+      "imbalance": 0.2072890493972125,
+      "violations": 0,
+      "runtime_ms": 0.52
+    },
+    {
+      "method": "random",
+      "seed": 1,
+      "fitness": 0.63891,
+      "coverage": 0.5,
+      "unfilled": 1,
+      "imbalance": 0.19049688317660213,
+      "violations": 0,
+      "runtime_ms": 0.49
+    },
+    {
+      "method": "genetic",
+      "seed": 2,
+      "fitness": 0.80937,
+      "coverage": 0.875,
+      "unfilled": 1,
+      "imbalance": 0.1695582495781317,
+      "violations": 0,
+      "runtime_ms": 3087.36
+    },
+    {
+      "method": "greedy",
+      "seed": 2,
+      "fitness": 0.79023,
+      "coverage": 0.875,
+      "unfilled": 1,
+      "imbalance": 0.2072890493972125,
+      "violations": 0,
+      "runtime_ms": 0.55
+    },
+    {
+      "method": "random",
+      "seed": 2,
+      "fitness": 0.6603,
+      "coverage": 0.625,
+      "unfilled": 1,
+      "imbalance": 0.25124689052802224,
+      "violations": 0,
+      "runtime_ms": 2.7
+    }
+  ],
+  "summary": {
+    "genetic": {
+      "fitness": {
+        "mean": 0.81076,
+        "stdev": 0.0032929166403053555
+      },
+      "coverage": {
+        "mean": 0.875,
+        "stdev": 0.0
+      },
+      "unfilled": {
+        "mean": 1,
+        "stdev": 0.0
+      },
+      "imbalance": {
+        "mean": 0.1586098672906238,
+        "stdev": 0.010766963224422332
+      },
+      "runtime_ms": {
+        "mean": 2755.0266666666666,
+        "stdev": 483.92789228699485
+      }
+    },
+    "greedy": {
+      "fitness": {
+        "mean": 0.79023,
+        "stdev": 0.0
+      },
+      "coverage": {
+        "mean": 0.875,
+        "stdev": 0.0
+      },
+      "unfilled": {
+        "mean": 1,
+        "stdev": 0.0
+      },
+      "imbalance": {
+        "mean": 0.2072890493972125,
+        "stdev": 0.0
+      },
+      "runtime_ms": {
+        "mean": 0.5700000000000001,
+        "stdev": 0.06244997998398397
+      }
+    },
+    "random": {
+      "fitness": {
+        "mean": 0.6582,
+        "stdev": 0.018330441893200534
+      },
+      "coverage": {
+        "mean": 0.5833333333333334,
+        "stdev": 0.07216878364870322
+      },
+      "unfilled": {
+        "mean": 1,
+        "stdev": 0.0
+      },
+      "imbalance": {
+        "mean": 0.1972479245682081,
+        "stdev": 0.050959941427573416
+      },
+      "runtime_ms": {
+        "mean": 1.1600000000000001,
+        "stdev": 1.3374228949737628
+      }
+    }
+  }
+}

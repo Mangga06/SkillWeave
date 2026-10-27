@@ -1,0 +1,17 @@
+node_modules/
+dist/
+__pycache__/
+.pytest_cache/
+*.db
+*.db-*
+.env
+*.log
+test-results/
+playwright-report/
+.venv/
+venv/
+.dist/
+*.tsbuildinfo
+.env.*
+!.env.example
+*@demo.skillweave.test

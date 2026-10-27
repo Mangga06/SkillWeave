@@ -1,0 +1,14 @@
+import {afterEach,beforeEach,describe,it,expect,vi} from 'vitest';
+import {render,screen,fireEvent,cleanup} from '@testing-library/react';
+import {MemoryRouter} from 'react-router-dom';
+import {QueryClient,QueryClientProvider} from '@tanstack/react-query';
+import {ThemeProvider,ThemeToggle} from './theme';
+import {api} from './api';
+import App from './App';
+beforeEach(()=>{localStorage.clear();Object.defineProperty(window,'matchMedia',{writable:true,value:vi.fn().mockImplementation(()=>({matches:false,addEventListener:vi.fn(),removeEventListener:vi.fn()}))});vi.spyOn(HTMLCanvasElement.prototype,'getContext').mockReturnValue(null)});
+afterEach(()=>{cleanup();vi.restoreAllMocks()});
+describe('appearance',()=>{it('applies and persists the explicit preference',()=>{render(<ThemeProvider><ThemeToggle/></ThemeProvider>);fireEvent.change(screen.getByLabelText('Theme preference'),{target:{value:'dark'}});expect(document.documentElement.dataset.theme).toBe('dark');expect(localStorage.getItem('sw-theme')).toBe('dark');fireEvent.change(screen.getByLabelText('Theme preference'),{target:{value:'light'}});expect(document.documentElement.dataset.theme).toBe('light')})});
+describe('API failures',()=>{it('surfaces server validation without pretending success',async()=>{vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:false,json:async()=>({detail:'Live data changed'})}));await expect(api('/optimization/1/publish',{method:'POST'})).rejects.toThrow('Live data changed');vi.unstubAllGlobals()})});
+function mount(path:string){return render(<QueryClientProvider client={new QueryClient({defaultOptions:{queries:{retry:false}}})}><ThemeProvider><MemoryRouter initialEntries={[path]}><App/></MemoryRouter></ThemeProvider></QueryClientProvider>)}
+it('redirects unauthenticated visitors to sign in',async()=>{vi.stubGlobal('fetch',vi.fn().mockResolvedValue({ok:false,json:async()=>({detail:'Please sign in'})}));mount('/app');expect(await screen.findByText('Welcome back.')).toBeTruthy();expect(screen.getByLabelText('Email address')).toBeTruthy();vi.unstubAllGlobals()});
+it('volunteer navigation excludes privileged workspaces',async()=>{const me={id:5,name:'Avery Patel',email:'avery@example.test',role:'volunteer',weekly_hours:12,skills:[],availability:[],interests:[],learning_goals:[]};vi.stubGlobal('fetch',vi.fn().mockImplementation(async(url:string)=>({ok:true,json:async()=>url.endsWith('/me')?me:url.endsWith('/analytics')?{projects:0,tasks:0,assignments:0,completed_tasks:0,volunteers:1,hours:0,unfilled:0,progress:[]}:[]})));mount('/app');expect(await screen.findByText('Good to see you, Avery.')).toBeTruthy();expect(screen.queryByRole('link',{name:'Administration'})).toBeNull();expect(screen.queryByRole('link',{name:/Optimization Lab/})).toBeNull();expect(screen.getByRole('link',{name:/Skills & availability/})).toBeTruthy();vi.unstubAllGlobals()});
